@@ -1,0 +1,286 @@
+.simulation-3d {
+    animation: fadeIn 0.3s ease-out;
+}
+
+.simulation-container {
+    padding: 0;
+    overflow: hidden;
+}
+
+.simulation-canvas {
+    height: 700px;
+    width: 100%;
+    background: linear-gradient(180deg, #0a1628 0%, #0f1419 100%);
+}
+
+.simulation-controls {
+    padding: var(--spacing-lg);
+    background: var(--card-bg-light);
+    border-top: 1px solid var(--border-color);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-md);
+    backdrop-filter: blur(10px);
+}
+
+.simulation-controls>.control-section.timeline-section {
+    grid-column: 1 / -1;
+}
+
+.control-section {
+    padding: var(--spacing-md);
+    background: rgba(15, 20, 25, 0.4);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-color);
+    transition: all var(--transition-base);
+}
+
+.control-section:hover {
+    border-color: var(--border-color-hover);
+    background: rgba(15, 20, 25, 0.6);
+}
+
+.timeline-controls {
+    display: flex;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+}
+
+.speed-select {
+    background: rgba(15, 20, 25, 0.8);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    padding: 4px 8px;
+    font-size: 0.75rem;
+    font-family: var(--font-mono);
+    cursor: pointer;
+    outline: none;
+    transition: all var(--transition-base);
+}
+
+.speed-select:hover {
+    border-color: var(--accent-blue);
+}
+
+.speed-select:focus {
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 8px rgba(59, 130, 246, 0.3);
+}
+
+.timeline-slider {
+    margin-top: var(--spacing-md);
+}
+
+.slider {
+    width: 100%;
+    height: 6px;
+    border-radius: var(--radius-sm);
+    background: rgba(15, 20, 25, 0.6);
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+    cursor: pointer;
+    transition: all var(--transition-base);
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--gradient-primary);
+    cursor: pointer;
+    box-shadow: 0 0 12px rgba(59, 130, 246, 0.5);
+    transition: all var(--transition-base);
+}
+
+.slider::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.8);
+}
+
+.slider::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--gradient-primary);
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 0 12px rgba(59, 130, 246, 0.5);
+    transition: all var(--transition-base);
+}
+
+.slider::-moz-range-thumb:hover {
+    transform: scale(1.2);
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.8);
+}
+
+.timeline-label {
+    display: block;
+    margin-top: var(--spacing-sm);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-align: center;
+    font-family: var(--font-mono);
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    cursor: pointer;
+    padding: var(--spacing-sm);
+    border-radius: var(--radius-sm);
+    transition: all var(--transition-base);
+    user-select: none;
+}
+
+.checkbox-label:hover {
+    background: rgba(59, 130, 246, 0.05);
+}
+
+.checkbox-label input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    accent-color: var(--accent-blue);
+}
+
+.control-section h4 {
+    font-size: 0.875rem;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-sm);
+}
+
+.control-section p {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    margin: var(--spacing-xs) 0;
+}
+
+/* ─── Timeline Tick Markers ─────────────────────────────────── */
+.timeline-event-markers {
+    position: relative;
+    height: 14px;
+    margin-top: var(--spacing-sm);
+}
+
+.timeline-tick {
+    position: absolute;
+    transform: translateX(-50%);
+    cursor: pointer;
+}
+
+.tick-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.timeline-tick.active .tick-dot {
+    box-shadow: 0 0 6px currentColor;
+    transform: scale(1.2);
+}
+
+.timeline-tick.current .tick-dot {
+    box-shadow: 0 0 10px currentColor;
+    transform: scale(1.5);
+    animation: tickPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes tickPulse {
+
+    0%,
+    100% {
+        transform: scale(1.5);
+    }
+
+    50% {
+        transform: scale(1.8);
+    }
+}
+
+/* ─── Event Log Panel ───────────────────────────────────────── */
+.events-feed {
+    grid-column: 1 / -1;
+}
+
+.events-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    max-height: 180px;
+    overflow-y: auto;
+    padding-right: var(--spacing-xs);
+    scrollbar-width: thin;
+    scrollbar-color: rgba(59, 130, 246, 0.3) transparent;
+}
+
+.events-list::-webkit-scrollbar {
+    width: 4px;
+}
+
+.events-list::-webkit-scrollbar-thumb {
+    background: rgba(59, 130, 246, 0.3);
+    border-radius: 4px;
+}
+
+.event-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: 4px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    opacity: 0.4;
+    font-size: 0.75rem;
+    border-left: 2px solid transparent;
+}
+
+.event-item:hover {
+    background: rgba(59, 130, 246, 0.06);
+}
+
+.event-item.active {
+    opacity: 1;
+    border-left-color: currentColor;
+}
+
+.event-item.current {
+    background: rgba(59, 130, 246, 0.08);
+    border-left-width: 3px;
+    font-weight: 700;
+}
+
+.event-time {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    min-width: 36px;
+}
+
+.event-icon {
+    font-size: 0.8rem;
+}
+
+.event-label {
+    transition: color 0.3s ease;
+}
+
+/* ─── 3D Event Pulse Animation ──────────────────────────────── */
+@keyframes eventPulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 6px currentColor;
+    }
+
+    50% {
+        box-shadow: 0 0 18px currentColor;
+    }
+}

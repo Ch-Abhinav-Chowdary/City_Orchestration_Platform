@@ -1,0 +1,45 @@
+{
+    "name": "emergency-orchestration-frontend",
+    "version": "1.0.0",
+    "description": "Emergency Resource Orchestration Platform - Frontend",
+    "private": true,
+    "dependencies": {
+        "@react-three/drei": "^9.92.5",
+        "@react-three/fiber": "^8.15.12",
+        "axios": "^1.6.2",
+        "chart.js": "^4.5.1",
+        "leaflet": "^1.9.4",
+        "react": "^18.2.0",
+        "react-chartjs-2": "^5.3.1",
+        "react-dom": "^18.2.0",
+        "react-leaflet": "^4.2.1",
+        "react-router-dom": "^6.30.3",
+        "react-scripts": "5.0.1",
+        "recharts": "^2.10.3",
+        "socket.io-client": "^4.6.0",
+        "three": "^0.159.0"
+    },
+    "scripts": {
+        "start": "react-scripts start",
+        "build": "react-scripts build",
+        "test": "react-scripts test",
+        "eject": "react-scripts eject"
+    },
+    "eslintConfig": {
+        "extends": [
+            "react-app"
+        ]
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    }
+}
